@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vendor Finder</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-container">
+      <header>
+        <h1>Vendor Finder</h1>
+        <p>
+          Choose a category, then a brand to discover matching vendors. Contact each vendor via
+          WhatsApp or email, or send an email to everyone in the selected category.
+        </p>
+      </header>
+
+      <section class="card">
+        <h2>Load vendor data (.csv)</h2>
+        <p class="muted">
+          The app automatically tries to load <code>vendors.csv</code> from this folder. You can
+          also upload a CSV manually.
+        </p>
+        <input id="csvFileInput" type="file" accept=".csv,text/csv" />
+        <p id="dataStatus" class="status">No data loaded yet.</p>
+      </section>
+
+      <section id="categoryPage" class="card page is-active">
+        <h2>Step 1: Select a product category</h2>
+        <label for="categorySelect">Category</label>
+        <select id="categorySelect">
+          <option value="">Select category...</option>
+        </select>
+        <button id="toBrandsBtn" disabled>Next: Choose brand</button>
+      </section>
+
+      <section id="brandPage" class="card page">
+        <h2>Step 2: Select a brand</h2>
+        <label for="brandSelect">Brand</label>
+        <select id="brandSelect">
+          <option value="">Select brand...</option>
+        </select>
+        <div class="button-row">
+          <button class="secondary" id="backToCategoriesBtn">Back</button>
+          <button id="showVendorsBtn" disabled>Show vendors</button>
+        </div>
+      </section>
+
+      <section id="vendorsPage" class="card page">
+        <h2>Matching vendors</h2>
+        <p id="resultSummary" class="muted"></p>
+        <div class="button-row">
+          <button class="secondary" id="backToBrandsBtn">Back</button>
+          <button id="emailAllCategoryBtn">Email all in category</button>
+        </div>
+        <ul id="vendorList" class="vendor-list"></ul>
+      </section>
+    </main>
+
+    <template id="vendorItemTemplate">
+      <li class="vendor-item">
+        <h3 class="vendor-name"></h3>
+        <p class="vendor-meta"></p>
+        <div class="button-row">
+          <a class="btn" data-role="whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a class="btn secondary" data-role="email">Email</a>
+        </div>
+      </li>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
